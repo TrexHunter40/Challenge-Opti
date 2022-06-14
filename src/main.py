@@ -32,4 +32,32 @@ def run(num_instance, threshold):
 
     algos.genetic(inst, 30, 0.5, num_instance)
 
+def randrun(num_instance, threshold):
+    file = imp.import_file(num_instance)
+    file_data = imp.import_file_data(file)
+
+    nb_options = file_data[0]
+    nb_cars = file_data[1]
+
+    file.readline()
+    file.readline()
+
+    options = []
+    cars = []
+
+    imp.import_options(file, options, nb_options)
+
+    file.readline()
+    file.readline()
+
+    imp.import_cars(file, cars, nb_cars)
+
+    inst = cal.instance(nb_cars, nb_options, options, cars)
+
+    algos.randomselect(inst, threshold)
+
+    #algos.genetic(inst, 200, 0.2, num_instance)
+
+randrun(8, 355)
+
 run(14, 100)
