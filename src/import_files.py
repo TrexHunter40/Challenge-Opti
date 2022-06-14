@@ -25,7 +25,7 @@ def import_options(file) :
     values_str = curr_line[:-7]
     option_values = string_extract_tab(values_str)
 
-    #print(id)
+    print(id)
     #print(option_values)
 
 def import_cars(file) :
