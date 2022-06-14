@@ -18,16 +18,16 @@ class instance:
         self.options = options
         self.cars = cars
 
-    def calcost(inst):
+    def calcost(self):
         cost = 0
-        for v in range(inst.nbcars):
-            for o in range(inst.nboptions):
+        for v in range(self.nbcars):
+            for o in range(self.nboptions):
                 excess = 0
-                po = inst.options[o].weight
-                for k in range(v, v+inst.options[o].P):
-                    if k < inst.nbcars:
-                        excess += inst.cars[k].options[o]
-                excess -= inst.options[o].N
+                po = self.options[o].weight
+                for k in range(v, v+self.options[o].P):
+                    if k < self.nbcars:
+                        excess += self.cars[k].options[o]
+                excess -= self.options[o].N
                 cost += po * max(0, excess)
 
         return cost

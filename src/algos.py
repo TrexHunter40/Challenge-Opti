@@ -1,6 +1,8 @@
 import numpy as np
 import calculus as cal
 import random as rd
+import outpute as op
+
 
 def evaladd(inst, sequence, i, k):
     val = 0
@@ -52,9 +54,50 @@ def randomselect(inst, threshold):
 
         contendent = randomgen(inst)
         contendentcost = contendent.calcost()
-        
+
         if contendentcost < costtobeat:
             costtobeat = contendentcost
             inst.cars = contendent.cars.copy()
         
     print("M O N K E found efFicIEncY: " + str(costtobeat))
+
+
+def genetic(inst, pop, perm_chance, num_instance) :
+    gen = 1
+    cost = inst.calcost()
+    genetic_recurr(inst, cost, gen, pop, perm_chance, num_instance)
+
+
+def genetic_recurr(curr_inst, curr_cost, gen, pop, perm_chance, num_instance) :
+
+    print("Generation "+str(gen))
+    print("Cost : "+str(curr_cost))
+    print("\n")
+
+    min_cost = curr_cost
+    last_inst = cal.instance(curr_inst.nbcars, curr_inst.nboptions, curr_inst.options, curr_inst.cars.copy())
+    best_inst = cal.instance(last_inst.nbcars, last_inst.nboptions, last_inst.options, last_inst.cars.copy())
+
+    for i in range(pop) :
+        curr_inst = cal.instance(last_inst.nbcars, last_inst.nboptions, last_inst.options, last_inst.cars.copy())
+
+        #neighbourg_perm(curr_inst, 0.2)
+        for i in range(curr_inst.nbcars-1) :
+            if rd.random() < perm_chance :
+                curr_inst.cars[i], curr_inst.cars[i+1] = curr_inst.cars[i+1], curr_inst.cars[i]
+        cost = curr_inst.calcost()
+        #print(cost)
+
+        if cost <= min_cost :
+            min_cost = cost
+            best_inst = cal.instance(curr_inst.nbcars, curr_inst.nboptions, curr_inst.options, curr_inst.cars.copy())
+
+    if gen%50 == 0 :
+        op.export(best_inst, num_instance)
+    
+    genetic_recurr(best_inst, min_cost, gen+1, pop, perm_chance, num_instance)
+
+
+def neighbourg_perm(inst, perm_chance) :
+    pass
+    
