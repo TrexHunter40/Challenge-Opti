@@ -1,5 +1,6 @@
 import numpy as np
 import calculus as cal
+import random as rd
 
 def evaladd(inst, sequence, i, k):
     val = 0
@@ -19,13 +20,37 @@ def evaladd(inst, sequence, i, k):
 def algo1(inst):
     sequence = []
     for i in range(inst.nbcars):
-        bestVeh = -1
+        bestCar = -1
         bestVal = np.inf
         for k in range(inst.nbcars):
             if not(inst.cars[k] in sequence):
                 val = evaladd(inst, sequence, i, k)
                 if val < bestVal:
-                    bestVeh = k
+                    bestCar = k
                     bestVal = val
+        print(i)
         sequence.append(inst.cars[k])
     return sequence
+
+
+def randomgen(inst):
+        cars2 = []
+        temp = inst.cars.copy()
+        listlen = inst.nbcars
+        for k in range(inst.nbcars):
+            r = rd.randint(0, listlen)
+            cars2.append(temp.pop(r))
+            listlen -= 1
+        newInst = cal.instance(inst.nbcars, inst.nboptions, inst.options, cars2)
+        return newInst
+
+def randomselect(inst, threshold):
+    costtobeat = inst.calcost()
+    print("Cost to beat: " + costtobeat)
+    while costtobeat > threshold:
+        contendent = inst.randomgen()
+        contendentcost = contendent.calcost()
+        if contendentcost < costtobeat:
+            costtobeat = contendentcost
+            inst.cars = contendent.cars.copy()
+    print("M O N K E found efFicIEncY: " + costtobeat)

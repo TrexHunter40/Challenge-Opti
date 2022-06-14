@@ -21,16 +21,9 @@ imp.import_options(file, options, nb_options)
 file.readline()
 file.readline()
 
-#imp.import_cars(file, cars, nb_cars)
+imp.import_cars(file, cars, nb_cars)
 
-#print(cars)
 
 inst = cal.instance(nb_cars, nb_options, options, cars)
 
-newseq = algos.algo1(inst).copy()
-
-inst.cars = newseq.copy()
-
-cost = inst.calcost()
-
-print(cost)
+algos.randomgen(inst)

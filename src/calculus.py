@@ -1,5 +1,3 @@
-import numpy as np
-import random as rd
 
 class car:
     def __init__(self, idcar, options):
@@ -34,27 +32,7 @@ class instance:
 
         return cost
 
-    def randomgen(inst):
-        cars2 = []
-        temp = inst.cars.copy()
-        listlen = inst.nbcars
-        for k in range(inst.nbcars):
-            r = rd.randint(0, listlen)
-            cars2.append(temp.pop(r))
-            listlen -= 1
-        newinst = instance(inst.nbcars, inst.nboptions, inst.options, cars2)
-        return newinst
-
-    def randomselect(inst, threshold):
-        costtobeat = inst.calcost()
-        print("Cost to beat: " + costtobeat)
-        while costtobeat > threshold:
-            contendent = inst.randomgen()
-            contendentcost = contendent.calcost()
-            if contendentcost < costtobeat:
-                costtobeat = contendentcost
-                inst.cars = contendent.cars.copy()
-        print("M O N K E found efFicIEncY: " + costtobeat)
+    
 
 
 
