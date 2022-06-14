@@ -15,7 +15,7 @@ def string_extract_int(str) :
 def string_extract_tab(str) :
     num_tab = list(map(int, re.findall('\d+', str)))
 
-    #print(num_tab)
+    print(num_tab)
     return num_tab
 
 
