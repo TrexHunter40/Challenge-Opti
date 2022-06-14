@@ -15,7 +15,7 @@ def string_extract_int(str) :
 def string_extract_tab(str) :
     num_tab = list(map(int, re.findall('\d+', str)))
 
-    #print(num_tab)
+    print(num_tab)
     return num_tab
 
 
@@ -25,7 +25,7 @@ def import_options(file) :
     values_str = curr_line[:-7]
     option_values = string_extract_tab(values_str)
 
-    #print(id)
+    print(id)
     #print(option_values)
 
 def import_cars(file) :
