@@ -19,9 +19,9 @@ def string_extract_tab(str) :
     return num_tab
 
 
-def import_file():
+def import_file(numinstance):
     cur_path = os.path.dirname(__file__)
-    file_path = cur_path + "/Instances/cs1.txt"
+    file_path = cur_path + "/Instances/cs"+str(numinstance)+".txt"
     return open(file_path, "rt")
 
 

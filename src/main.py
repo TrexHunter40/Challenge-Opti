@@ -1,29 +1,30 @@
 import calculus as cal
 import import_files as imp
 import algos
+import outpute as op
 
 print("\n")
 
-file = imp.import_file()
-file_data = imp.import_file_data(file)
+def run(num_instance, threshold):
+    file = imp.import_file(num_instance)
+    file_data = imp.import_file_data(file)
 
-nb_options = file_data[0]
-nb_cars = file_data[1]
+    nb_options = file_data[0]
+    nb_cars = file_data[1]
 
-file.readline()
-file.readline()
+    file.readline()
+    file.readline()
 
-options = []
-cars = []
+    options = []
+    cars = []
 
-imp.import_options(file, options, nb_options)
+    imp.import_options(file, options, nb_options)
 
-file.readline()
-file.readline()
+    file.readline()
+    file.readline()
 
-imp.import_cars(file, cars, nb_cars)
+    imp.import_cars(file, cars, nb_cars)
 
+    inst = cal.instance(nb_cars, nb_options, options, cars)
 
-inst = cal.instance(nb_cars, nb_options, options, cars)
-
-algos.randomselect(inst, 100)
+    algos.randomselect(inst, threshold)

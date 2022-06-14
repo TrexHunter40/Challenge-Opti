@@ -1,9 +1,11 @@
 import calculus as cal
 
-def export(inst):
-    f = open("res_n.txt", "a")
-    f.write("EQUIPE monke")
-    f.write("INSTANCE n")
+# n -> numero de l'instance
+
+def export(inst, n):
+    f = open("res_"+str(n)+".txt", "w")
+    f.write("EQUIPE monke\n")
+    f.write("INSTANCE "+str(n)+"\n")
     for c in inst.cars:
-        f.write(c.idcar + " ")
+        f.write(str(c.idcar) + " ")
     f.close()
