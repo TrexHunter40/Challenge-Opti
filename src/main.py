@@ -16,9 +16,11 @@ file.readline()
 options = []
 cars = []
 
-imp.import_options(file, options)
+imp.import_options(file, options, nb_options)
 
 file.readline()
 file.readline()
 
-imp.import_cars(file, cars)
+imp.import_cars(file, cars, nb_cars)
+
+print(cars)

@@ -36,9 +36,8 @@ def import_file_data(file) :
     return [nb_options, nb_cars]
 
 
-def import_options(file, options) :
-    for curr_line in file :
-        #print(curr_line)
+def import_options(file, options, nb_options) :
+    for  i in  range(nb_options) :
         curr_line = file.readline()
         id = curr_line[-6:]    
         values_str = curr_line[:-7]
@@ -47,10 +46,12 @@ def import_options(file, options) :
         options.append(cal.option(option_values[0], option_values[1], option_values[2], id))
 
 
-def import_cars(file, cars) :
-    for curr_line in file :
+def import_cars(file, cars, nb_cars) :
+     for i in range(nb_cars) :
         curr_line = file.readline()
         car_values = string_extract_tab(curr_line)
+
+        #print(car_values)
 
         cars.append(cal.car(car_values[0], car_values[1:]))
 
