@@ -30,7 +30,7 @@ def run(num_instance, threshold):
 
     #algos.randomselect(inst, threshold)
 
-    algos.genetic(inst, 30, 0.5, num_instance)
+    algos.genetic(inst, 300, 0.2, threshold, num_instance)
 
 def randrun(num_instance, threshold):
     file = imp.import_file(num_instance)
@@ -56,8 +56,8 @@ def randrun(num_instance, threshold):
 
     algos.randomselect(inst, threshold)
 
-    #algos.genetic(inst, 200, 0.2, num_instance)
+    #algos.genetic(inst, 200, 0.2, threshold, num_instance)
 
-randrun(8, 355)
+#randrun(8, 355)
 
-run(14, 100)
+run(6, 25)
