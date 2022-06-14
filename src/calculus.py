@@ -32,6 +32,13 @@ class instance:
 
         return cost
 
+    def max_weight(self):
+        max = 0
+        for option in self.options :
+            if option.weight > max :
+                max = option.weight
+        return max
+
     
 
 
