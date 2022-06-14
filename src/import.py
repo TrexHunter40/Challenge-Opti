@@ -1,6 +1,7 @@
 import os
+import re
 
-def string_extract(str) :
+def string_extract_int(str) :
     res = ''
 
     for i in str :
@@ -10,6 +11,26 @@ def string_extract(str) :
     res = int(res)
 
     return res
+
+def string_extract_tab(str) :
+    num_tab = list(map(int, re.findall('\d+', str)))
+
+    #print(num_tab)
+    return num_tab
+
+
+def import_options(file) :
+    curr_line = file.readline()
+    id = curr_line[-6:]    
+    values_str = curr_line[:-7]
+    option_values = string_extract_tab(values_str)
+
+    #print(id)
+    #print(option_values)
+
+def import_cars(file) :
+    curr_line = file.readline()
+    car_values = string_extract_tab(curr_line)
 
 
 
@@ -24,9 +45,17 @@ def import_file():
     line1 = file.readline()
     line2 = file.readline()
 
-    print(line1+line2)
+    nb_options = string_extract_int(line1)
+    nb_cars = string_extract_int(line2)
+
+    file.readline()
+    file.readline()
+
+    import_options(file)
+
+    #print(nb_options)
+    #print(nb_cars)
 
 print("\n")
 
-print(string_extract("ABc 36"))
-#import_file()
+import_file()
