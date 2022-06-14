@@ -5,6 +5,7 @@ import outpute as op
 
 print("\n")
 
+
 def run(num_instance, threshold):
     file = imp.import_file(num_instance)
     file_data = imp.import_file_data(file)
@@ -27,4 +28,8 @@ def run(num_instance, threshold):
 
     inst = cal.instance(nb_cars, nb_options, options, cars)
 
-    algos.randomselect(inst, threshold)
+    #algos.randomselect(inst, threshold)
+
+    algos.genetic(inst, 200, 0.2, num_instance)
+
+run(6, 100)

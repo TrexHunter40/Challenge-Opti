@@ -1,6 +1,7 @@
 import numpy as np
 import calculus as cal
 import random as rd
+import outpute as op
 
 
 def evaladd(inst, sequence, i, k):
@@ -61,13 +62,13 @@ def randomselect(inst, threshold):
     print("M O N K E found efFicIEncY: " + str(costtobeat))
 
 
-def genetic(inst, pop, perm_chance) :
+def genetic(inst, pop, perm_chance, num_instance) :
     gen = 1
     cost = inst.calcost()
-    genetic_recurr(inst, cost, gen, pop, perm_chance)
+    genetic_recurr(inst, cost, gen, pop, perm_chance, num_instance)
 
 
-def genetic_recurr(curr_inst, curr_cost, gen, pop, perm_chance) :
+def genetic_recurr(curr_inst, curr_cost, gen, pop, perm_chance, num_instance) :
 
     print("Generation "+str(gen))
     print("Cost : "+str(curr_cost))
@@ -91,7 +92,10 @@ def genetic_recurr(curr_inst, curr_cost, gen, pop, perm_chance) :
             min_cost = cost
             best_inst = cal.instance(curr_inst.nbcars, curr_inst.nboptions, curr_inst.options, curr_inst.cars.copy())
 
-    genetic_recurr(best_inst, min_cost, gen+1, pop, perm_chance)
+    if gen%50 == 0 :
+        op.export(best_inst, num_instance)
+    
+    genetic_recurr(best_inst, min_cost, gen+1, pop, perm_chance, num_instance)
 
 
 def neighbourg_perm(inst, perm_chance) :
