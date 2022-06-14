@@ -1,13 +1,13 @@
 import os
 import re
+import calculus as cal
 
 def string_extract_int(str) :
     res = ''
 
     for i in str :
-        if i.isdigit():
+        if (i.isdigit()):
             res += i
-
     res = int(res)
 
     return res
@@ -15,32 +15,17 @@ def string_extract_int(str) :
 def string_extract_tab(str) :
     num_tab = list(map(int, re.findall('\d+', str)))
 
-    print(num_tab)
+    #print(num_tab)
     return num_tab
 
 
-def import_options(file) :
-    curr_line = file.readline()
-    id = curr_line[-6:]    
-    values_str = curr_line[:-7]
-    option_values = string_extract_tab(values_str)
-
-    print(id)
-    #print(option_values)
-
-def import_cars(file) :
-    curr_line = file.readline()
-    car_values = string_extract_tab(curr_line)
-
-
-
 def import_file():
-
     cur_path = os.path.dirname(__file__)
     file_path = cur_path + "/Instances/cs1.txt"
+    return open(file_path, "rt")
 
-    file = open(file_path, "rt")
-    #print(file.read())
+
+def import_file_data(file) :
 
     line1 = file.readline()
     line2 = file.readline()
@@ -48,14 +33,28 @@ def import_file():
     nb_options = string_extract_int(line1)
     nb_cars = string_extract_int(line2)
 
-    file.readline()
-    file.readline()
+    return [nb_options, nb_cars]
 
-    import_options(file)
 
-    #print(nb_options)
-    #print(nb_cars)
+def import_options(file, options) :
+    for curr_line in file :
+        #print(curr_line)
+        curr_line = file.readline()
+        id = curr_line[-6:]    
+        values_str = curr_line[:-7]
+        option_values = string_extract_tab(values_str)
 
+        options.append(cal.option(option_values[0], option_values[1], option_values[2], id))
+
+
+def import_cars(file, cars) :
+    for curr_line in file :
+        curr_line = file.readline()
+        car_values = string_extract_tab(curr_line)
+
+        cars.append(cal.car(car_values[0], car_values[1:]))
+
+"""
 print("\n")
-
-import_file()
+file = import_file()
+file_data = import_file_data(file)"""
