@@ -1,1 +1,5 @@
-print("\ndoes it run well on linux?\n")
+import random as rd
+
+x = rd.random()
+
+print(x)
