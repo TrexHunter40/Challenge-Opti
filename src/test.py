@@ -1,1 +1,1 @@
-print("does it run well on linux?")
+print("\ndoes it run well on linux?\n")
