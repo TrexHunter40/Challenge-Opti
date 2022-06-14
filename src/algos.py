@@ -38,7 +38,7 @@ def randomgen(inst):
         temp = inst.cars.copy()
         listlen = inst.nbcars
         for k in range(inst.nbcars):
-            r = rd.randint(0, listlen)
+            r = rd.randint(0, listlen-1)
             cars2.append(temp.pop(r))
             listlen -= 1
         newInst = cal.instance(inst.nbcars, inst.nboptions, inst.options, cars2)
@@ -46,11 +46,15 @@ def randomgen(inst):
 
 def randomselect(inst, threshold):
     costtobeat = inst.calcost()
-    print("Cost to beat: " + costtobeat)
-    while costtobeat > threshold:
-        contendent = inst.randomgen()
+    
+    while costtobeat > threshold :
+        print("Cost to beat: " + str(costtobeat))
+
+        contendent = randomgen(inst)
         contendentcost = contendent.calcost()
+        
         if contendentcost < costtobeat:
             costtobeat = contendentcost
             inst.cars = contendent.cars.copy()
-    print("M O N K E found efFicIEncY: " + costtobeat)
+        
+    print("M O N K E found efFicIEncY: " + str(costtobeat))

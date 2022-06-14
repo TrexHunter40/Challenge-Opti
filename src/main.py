@@ -26,4 +26,4 @@ imp.import_cars(file, cars, nb_cars)
 
 inst = cal.instance(nb_cars, nb_options, options, cars)
 
-algos.randomgen(inst)
+algos.randomselect(inst, 100)
