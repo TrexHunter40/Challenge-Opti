@@ -1,13 +1,8 @@
 import numpy as np
-'''
-Classes explaination:
+import random as rd
 
-car ---> idcar (int corresponding to its number in the instance file)
-     |
-
-'''
 class car:
-    def __init__(self, idcar, nboptions, options):
+    def __init__(self, idcar, options):
         self.idcar = idcar
         self.options = options
 
@@ -25,19 +20,46 @@ class instance:
         self.options = options
         self.cars = cars
 
-    def calcost(instance):
+    def calcost(inst):
         cost = 0
-        for v in range(instance.nbcars):
-            for o in range(instance.nboptions):
+        for v in range(inst.nbcars):
+            for o in range(inst.nboptions):
                 excess = 0
-                po = instance.options[o].weight
-                for k in range(v, v+instance.options[o].P):
-                    if k < instance.nbcars:
-                        excess += instance.cars[k].options[o]
-                excess -= instance.options[o].N
+                po = inst.options[o].weight
+                for k in range(v, v+inst.options[o].P):
+                    if k < inst.nbcars:
+                        excess += inst.cars[k].options[o]
+                excess -= inst.options[o].N
                 cost += po * max(0, excess)
 
         return cost
+
+    def randomgen(inst):
+        cars2 = []
+        temp = inst.cars.copy()
+        listlen = inst.nbcars
+        for k in range(inst.nbcars):
+            r = rd.randint(0, listlen)
+            cars2.append(temp.pop(r))
+            listlen -= 1
+        newinst = instance(inst.nbcars, inst.nboptions, inst.options, cars2)
+        return newinst
+
+    def randomselect(inst, threshold):
+        costtobeat = inst.calcost()
+        printf("Cost to beat: " + costtobeat)
+        while costtobeat > threshold:
+            contendent = inst.randomgen()
+            contendentcost = contendent.calcost()
+            if contendentcost < costtobeat:
+                costtobeat = contendentcost
+                inst.cars = contendent.cars.copy()
+        print("M O N K E found efFicIEncY: " + costtobeat)
+
+
+
+
+
 
 
 '''
@@ -53,3 +75,4 @@ inst = instance(2, 2, [o0, o1], [c0, c1])
 cost = inst.calcost()
 print(cost)
 '''
+
