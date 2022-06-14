@@ -17,13 +17,13 @@ def evaladd(inst, sequence, i, k):
     return val
 
 def algo1(inst):
-    sequence = []    
+    sequence = []
     for i in range(inst.nbcars):
         bestVeh = -1
         bestVal = np.inf
         for k in range(inst.nbcars):
             if not(inst.cars[k] in sequence):
-                val = evaladd(k)
+                val = evaladd(inst, sequence, i, k)
                 if val < bestVal:
                     bestVeh = k
                     bestVal = val
