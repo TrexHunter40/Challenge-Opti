@@ -47,7 +47,7 @@ class instance:
 
     def randomselect(inst, threshold):
         costtobeat = inst.calcost()
-        printf("Cost to beat: " + costtobeat)
+        print("Cost to beat: " + costtobeat)
         while costtobeat > threshold:
             contendent = inst.randomgen()
             contendentcost = contendent.calcost()
